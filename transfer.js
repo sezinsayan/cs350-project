@@ -1,15 +1,19 @@
 const hre = require("hardhat");
 
 async function main() {
-    const MoneyTransfer = await hre.ethers.getContractFactory("MoneyTransfer");
-    const moneyTransfer = await MoneyTransfer.deploy("<recipient-address>");
+  const Trial = await hre.ethers.getContractFactory("Trial");
+  const trial = await Trial.deploy();
 
-    await moneyTransfer.deployed();
+  await trial.deployed();
 
-    console.log("Contract deployed:", moneyTransfer.address);
-    await moneyTransfer.transfer("<amount>");
+  console.log("Contract deployed:", trial.address);
+
+  // Set the recipient address
+  await trial.setRecipient("<recipient-address>");
+
+  // Transfer the desired amount
+  await trial.transfer("<amount>");
 }
-
 
 main()
   .then(() => process.exit(0))
