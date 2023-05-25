@@ -22,5 +22,5 @@ contract Trial{
     }
 
     receive() external payable {}
-}
+
 }
