@@ -13,7 +13,7 @@ contract Trial{
         recipient = _recipient;
     }
 
-    function transfer(uint256 amount) public {
+    function transfer(uint256 amount) payable external {
         require(msg.sender == admin, "Only the admin can make transfers");
         require(address(this).balance >= amount, "Not enough balance in account");
 
