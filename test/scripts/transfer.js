@@ -1,26 +1,32 @@
 const hre = require("hardhat");
 
-
-
 async function main() {
-  const Trial = await hre.ethers.getContractFactory("Trial");
-  const trial = await Trial.deploy();
-  const recipientAddress = process.env.RECIPIENT_ADDRESS; // give address of wallet
-  const amount=1; // the amount to be transfered
+  const [deployer] = await ethers.getSigners();
 
-  await trial.deployed();
+  const Contract = await hre.ethers.getContractFactory("Trial");
+  const contract = await Contract.deploy();
+  await contract.deployed();
 
-  console.log("Contract deployed:", trial.address);
+  console.log("Contract deployed:", contract.address);
 
   // Set the recipient address
-  await trial.setRecipient(recipientAddress);
+  const recipientAddress = "0x14dC79964da2C08b23698B3D3cc7Ca32193d9955";
+  await contract.setRecipient(recipientAddress);
+
+  console.log("Recipient address:", recipientAddress);
 
   // Transfer the desired amount
-  await trial.transfer(amount);
+  const amount = ethers.utils.parseEther("1.0");
+  await contract.transfer(amount);
+
+  console.log("Transfer complete.");
 }
 
 main()
-  .then(() => process.exit(0))
+  .then((contractAddress) => {
+    console.log("Contract address passed to test script:", contractAddress);
+    process.exit(0);
+  })
   .catch((error) => {
     console.error(error);
     process.exit(1);
