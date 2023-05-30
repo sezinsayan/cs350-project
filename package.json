@@ -17,7 +17,12 @@
   },
   "homepage": "https://github.com/sezinsayan/cs350-project#readme",
   "devDependencies": {
+    "@nomiclabs/hardhat-waffle": "^2.0.6",
     "hardhat": "^2.14.0",
     "hardhat-ganache": "^1.0.1"
+  },
+  "dependencies": {
+    "ethers": "^6.4.0",
+    "truffle": "^5.9.2"
   }
 }
