@@ -25,6 +25,7 @@ describe("Trial Contract", function () {
       to: recipient.address,
       value: ethers.utils.parseEther("10"), // Amount of Ether to send
     });
+
   
   describe("Correct address", function () {
     it("should set the recipient address", async function () {
@@ -33,6 +34,9 @@ describe("Trial Contract", function () {
 
       await contract.setRecipient(recipientAddress);
       expect(await contract.recipient()).to.equal(recipientAddress);
+    });
+    it("Right mapping", async function () {
+      
     });
   })
   describe("Checking transfer", function(){

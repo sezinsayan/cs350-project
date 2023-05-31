@@ -4,7 +4,7 @@ require("@nomiclabs/hardhat-waffle");
 module.exports = {
   networks: {
     hardhat: {
-      
+      chainId: 1337
     },
     ganache: {
       url: "http://localhost:7545", // Replace with the correct Ganache URL
