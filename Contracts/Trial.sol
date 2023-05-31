@@ -18,8 +18,7 @@ contract Trial{
         require(msg.sender == admin, "Only the admin can make transfers");
         require(address(this).balance >= amount, "Not enough balance in account");
 
-        (bool success, ) = recipient.call{value: amount}("");
-        require(success, "Transfer failed");
+        payable(recipient).transfer(amount);
     }
 
     receive() external payable {}

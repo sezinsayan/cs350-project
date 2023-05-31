@@ -2,8 +2,8 @@
   "_format": "hh-sol-cache-2",
   "files": {
     "/Users/sezinsayan/cs350-project/Contracts/Trial.sol": {
-      "lastModificationDate": 1685549067622,
-      "contentHash": "9fa4490f10ddb37213ab7275dfd1ae93",
+      "lastModificationDate": 1685556253120,
+      "contentHash": "ad611facfc670b9fb036c73d5fc16962",
       "sourceName": "Contracts/Trial.sol",
       "solcConfig": {
         "version": "0.8.18",
