@@ -1,4 +1,3 @@
-const hre = require("hardhat");
 const { expect } = require("chai");
 
 describe("Trial Contract", function () {
@@ -16,17 +15,8 @@ describe("Trial Contract", function () {
 
     const Contract = await ethers.getContractFactory("Trial");
     contract = await Contract.attach(contractAddress);
+  });
 
-    console.log("Contract attached:", contract.address);
-
-    // Fund the recipient account with Ether
-    const sender = ethers.provider.getSigner(admin.address);
-    await sender.sendTransaction({
-      to: recipient.address,
-      value: ethers.utils.parseEther("10"), // Amount of Ether to send
-    });
-
-  
   describe("Correct address", function () {
     it("should set the recipient address", async function () {
       // Access the recipient address from the deployment script
@@ -35,11 +25,7 @@ describe("Trial Contract", function () {
       await contract.setRecipient(recipientAddress);
       expect(await contract.recipient()).to.equal(recipientAddress);
     });
-    it("Right mapping", async function () {
-      
-    });
-  })
-  describe("Checking transfer", function(){
+
     it("should transfer funds to the recipient", async function () {
       // Access the recipient address and amount from the deployment script
       const recipientAddress = "0x14dC79964da2C08b23698B3D3cc7Ca32193d9955";
@@ -51,6 +37,5 @@ describe("Trial Contract", function () {
       const newBalance = await recipient.getBalance();
       expect(newBalance.sub(initialBalance)).to.equal(amount);
     });
-  })
-});
+  });
 });
