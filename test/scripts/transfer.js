@@ -9,6 +9,16 @@ async function main() {
 
   console.log("Contract deployed:", contract.address);
 
+  // Fund the contract with Ether
+  const fundingAmount = ethers.utils.parseEther("10.0"); // Adjust the funding amount if needed
+  const sender = ethers.provider.getSigner(deployer.address);
+  await sender.sendTransaction({
+    to: contract.address,
+    value: fundingAmount,
+  });
+
+  console.log("Contract funded with Ether:", fundingAmount.toString());
+
   // Set the recipient address
   const recipientAddress = "0x14dC79964da2C08b23698B3D3cc7Ca32193d9955";
   await contract.setRecipient(recipientAddress);
@@ -16,15 +26,14 @@ async function main() {
   console.log("Recipient address:", recipientAddress);
 
   // Transfer the desired amount
-  const amount = ethers.utils.parseEther("1.0");
-  await contract.transfer(amount);
+  const transferAmount = ethers.utils.parseEther("1.0");
+  await contract.transfer(transferAmount);
 
   console.log("Transfer complete.");
 }
 
 main()
-  .then((contractAddress) => {
-    console.log("Contract address passed to test script:", contractAddress);
+  .then(() => {
     process.exit(0);
   })
   .catch((error) => {
